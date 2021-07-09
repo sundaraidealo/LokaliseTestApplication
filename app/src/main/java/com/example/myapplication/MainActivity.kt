@@ -2,27 +2,29 @@ package com.example.myapplication
 
 import android.content.Context
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import co.lokalise.android.sdk.LokaliseResources
 import co.lokalise.android.sdk.core.LokaliseContextWrapper
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
+
 
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
-
+	private lateinit var dynamicString:String
 	override fun attachBaseContext(newBase: Context) {
 		// Inject the Lokalise SDK into the activity context
 		super.attachBaseContext(LokaliseContextWrapper.wrap(newBase))
 	}
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -35,14 +37,15 @@ class MainActivity : AppCompatActivity() {
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
 		appBarConfiguration = AppBarConfiguration(navController.graph)
 		setupActionBarWithNavController(navController, appBarConfiguration)
-		val resources = LokaliseResources(this)
-		val newKey = resources.getString("gdpr_sfmc_noconsent_allow")
-		var dynamicString =resources.getString(R.string.dynamic_string)
-		newKey?.let {
-			// do something with the new value
-			dynamicString = it
-		}
+
+		dynamicString = resources.getString(R.string.dynamic_string)
 		binding.fab.setOnClickListener { view ->
+			val resources = LokaliseResources(this)
+			val newKey = resources.getString("dynamic_string")
+			newKey?.let {
+				// do something with the new value
+				dynamicString = it
+			}
 			Snackbar.make(view, dynamicString, Snackbar.LENGTH_LONG)
 				.setAction("Action", null).show()
 		}
