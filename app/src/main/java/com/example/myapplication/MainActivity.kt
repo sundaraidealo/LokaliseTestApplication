@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 		setupActionBarWithNavController(navController, appBarConfiguration)
 
 		binding.fab.setOnClickListener { view ->
-			Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+			Snackbar.make(view, resources.getString(R.string.dynamic_string), Snackbar.LENGTH_LONG)
 				.setAction("Action", null).show()
 		}
 	}
