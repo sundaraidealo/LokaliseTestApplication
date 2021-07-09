@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import co.lokalise.android.sdk.LokaliseResources
 import co.lokalise.android.sdk.core.LokaliseContextWrapper
 import com.example.myapplication.databinding.ActivityMainBinding
 
@@ -34,9 +35,15 @@ class MainActivity : AppCompatActivity() {
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
 		appBarConfiguration = AppBarConfiguration(navController.graph)
 		setupActionBarWithNavController(navController, appBarConfiguration)
-
+		val resources = LokaliseResources(this)
+		val newKey = resources.getString("gdpr_sfmc_noconsent_allow")
+		var dynamicString =resources.getString(R.string.dynamic_string)
+		newKey?.let {
+			// do something with the new value
+			dynamicString = it
+		}
 		binding.fab.setOnClickListener { view ->
-			Snackbar.make(view, resources.getString(R.string.dynamic_string), Snackbar.LENGTH_LONG)
+			Snackbar.make(view, dynamicString, Snackbar.LENGTH_LONG)
 				.setAction("Action", null).show()
 		}
 	}
