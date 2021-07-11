@@ -9,17 +9,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import co.lokalise.android.sdk.LokaliseResources
-import co.lokalise.android.sdk.core.LokaliseContextWrapper
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import com.lokalise.sdk.LokaliseContextWrapper
+import com.lokalise.sdk.LokaliseResources
 
 
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
-	private lateinit var dynamicString:String
+
 	override fun attachBaseContext(newBase: Context) {
 		// Inject the Lokalise SDK into the activity context
 		super.attachBaseContext(LokaliseContextWrapper.wrap(newBase))
@@ -31,14 +31,15 @@ class MainActivity : AppCompatActivity() {
 
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
-
 		setSupportActionBar(binding.toolbar)
+		binding.toolbar.setTitle(R.string.first_fragment_label)
 
-		val navController = findNavController(R.id.nav_host_fragment_content_main)
+		/*val navController = findNavController(R.id.nav_host_fragment_content_main)
 		appBarConfiguration = AppBarConfiguration(navController.graph)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 
-		dynamicString = resources.getString(R.string.dynamic_string)
+		*/
+		var dynamicString = "default dynamic value"
 		binding.fab.setOnClickListener { view ->
 			val resources = LokaliseResources(this)
 			val newKey = resources.getString("dynamic_string")
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		menuInflater.inflate(R.menu.menu_main, menu)
+		(resources as LokaliseResources).translateToolbarItems(binding.toolbar)
 		return true
 	}
 

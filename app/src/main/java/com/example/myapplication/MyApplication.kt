@@ -1,8 +1,11 @@
 package com.example.myapplication
 
 import android.app.Application
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
-import co.lokalise.android.sdk.LokaliseSDK
+import com.lokalise.sdk.Lokalise
+import com.lokalise.sdk.LokaliseCallback
+import com.lokalise.sdk.LokaliseUpdateError
 
 /**
  * @author sundara.santhanam
@@ -14,15 +17,29 @@ class MyApplication :Application(){
 		super.onCreate()
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 		// Initialise Lokalise SDK with projects SDK token and project id
-		// It is important to call this right after the "super.onCreate()"
-		// If you are using AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-		// make sure it is called before LokaliseSDK.init()
-		LokaliseSDK.init( "9f45cea43afd721d751ca0fad8689fb59efbb3d4", "5588096260e6beffb43ad9.55374331",this)
+		// It is important init right after the "super.onCreate()"
+		Lokalise.init(this,  "9f45cea43afd721d751ca0fad8689fb59efbb3d4", "5588096260e6beffb43ad9.55374331")
 
 		// Add this only if you want to use pre-release bundles
-		LokaliseSDK.setPreRelease(true);
+		Lokalise.isPreRelease = true
 
 		// Fetch the latest translations from Lokalise (can be called anywhere)
-		LokaliseSDK.updateTranslations();
+		Lokalise.updateTranslations();
+		val myCallback =  object: LokaliseCallback{
+
+			override fun onUpdateFailed(error: LokaliseUpdateError) {
+				Log.d("Lokalise Update","Update failed")
+			}
+
+			override fun onUpdateNotNeeded() {
+				Log.d("Lokalise Update","Update not necessary")
+			}
+
+			override fun onUpdated(oldBundleId: Long, newBundleId: Long) {
+				Log.d("Lokalise Update","OldVersion:$oldBundleId NewVersion:$newBundleId")
+			}
+		}
+
+		Lokalise.addCallback(myCallback);
 	}
 }
