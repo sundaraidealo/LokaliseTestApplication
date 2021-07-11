@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,6 +37,13 @@ class SecondFragment : Fragment() {
 		binding.buttonSecond.setOnClickListener {
 			findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
 		}
+		activity?.let{it as AppCompatActivity }?.supportActionBar?.setTitle (R.string.second_fragment_label)
+	}
+
+	override fun onConfigurationChanged(newConfig: Configuration) {
+		super.onConfigurationChanged(newConfig)
+		binding.buttonSecond.setText(R.string.next)
+		binding.textviewSecond.setText(R.string.hello_second_fragment)
 		activity?.let{it as AppCompatActivity }?.supportActionBar?.setTitle (R.string.second_fragment_label)
 	}
 
