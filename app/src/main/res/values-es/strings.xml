@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <string name="action_settings">Ajustes</string>
+  <string name="first_fragment_label">Prueba del primer fragmento</string>
+  <string name="next">próximo</string>
+  <string name="hello_first_fragment">Hola segundo fragmento !!!</string>
   <string name="hello_second_fragment">Hola segundo fragmento !!!</string>
+  <string name="dynamic_string">nuevo valor dinámico</string>
+  <string name="info_txt">Texto de información</string>
 </resources>
