@@ -7,4 +7,5 @@
   <string name="hello_second_fragment">Bonjour deuxième fragment !!!</string>
   <string name="dynamic_string">nouvelle valeur dynamique</string>
   <string name="info_txt">Texte d\'information</string>
+  <string name="dynamic_string_2">chaîne_dynamique_2</string>
 </resources>

@@ -9,5 +9,7 @@
   <string name="hello_first_fragment">Hello First Fragment</string>
   <string name="hello_second_fragment">Second Fragment Greetings!</string>
   <string name="dynamic_string">Dynamic Value 101</string>
-  <string name="info_txt">Info text</string>
+  <string name="info_txt">Some random text</string>
+  <string name="dynamic_string_2">dynamic_string_2</string>
+  <string name="info_txt.85">Info click here text</string>
 </resources>
