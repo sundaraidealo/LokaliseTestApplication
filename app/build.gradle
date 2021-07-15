@@ -18,7 +18,13 @@ android {
 	}
 
 	buildTypes {
+		debug {
+			buildConfigField "String", "LOKALISE_PROJECT_ID", "\"$lokalise_project_id\""
+			buildConfigField "String", "LOKALISE_SDK_TOKEN", "\"$lokalise_sdk_token\""
+		}
 		release {
+			buildConfigField "String", "LOKALISE_PROJECT_ID", "\"$lokalise_project_id\""
+			buildConfigField "String", "LOKALISE_SDK_TOKEN", "\"$lokalise_sdk_token\""
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 		}

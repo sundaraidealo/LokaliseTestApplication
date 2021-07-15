@@ -18,7 +18,7 @@ class MyApplication :Application(){
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 		// Initialise Lokalise SDK with projects SDK token and project id
 		// It is important init right after the "super.onCreate()"
-		Lokalise.init(this,  "9f45cea43afd721d751ca0fad8689fb59efbb3d4", "5588096260e6beffb43ad9.55374331")
+		Lokalise.init(this,  BuildConfig.LOKALISE_SDK_TOKEN, BuildConfig.LOKALISE_PROJECT_ID)
 
 		// Add this only if you want to use pre-release bundles
 		Lokalise.isPreRelease = true
