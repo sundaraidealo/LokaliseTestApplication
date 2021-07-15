@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="app_name"></string>
+  <string name="action_settings"></string>
+  <string name="first_fragment_label"></string>
+  <string name="second_fragment_label"></string>
+  <string name="next"></string>
+  <string name="previous"></string>
+  <string name="hello_first_fragment"></string>
+  <string name="hello_second_fragment"></string>
+  <string name="dynamic_string">nuovo valore dinamico</string>
+  <string name="info_txt">Testo informativo</string>
+  <string name="dynamic_string_2">stringa dinamica_2</string>
+</resources>
